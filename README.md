@@ -29,6 +29,7 @@ A complete implementation of a transformer-based Large Language Model (LLM) buil
 ├── dashboard/              # TypeScript frontend for monitoring
 │   ├── src/
 │   │   ├── components/     # React visualization components
+│   │   │   └── TrainingMetricsChart.tsx  # Chart component for training metrics
 │   │   ├── hooks/          # Custom React hooks
 │   │   ├── services/       # WebSocket and state management
 │   │   └── types/          # TypeScript type definitions
@@ -106,6 +107,26 @@ The dashboard provides:
 - Real-time visualization of training metrics
 - Interactive controls for the training process
 - Model inspection tools
+
+### 4. Data Visualization
+
+The dashboard uses Chart.js and react-chartjs-2 for data visualization:
+
+```bash
+# Install chart.js and react-chartjs-2
+cd dashboard
+npm install chart.js react-chartjs-2
+```
+
+Key visualization components:
+
+- **TrainingMetricsChart**: Displays real-time loss and accuracy during training
+  - Uses line charts to visualize trends over time
+  - Automatically updates as new data arrives
+  - Supports multiple metrics (loss, accuracy, learning rate, etc.)
+  - Responsive design that adapts to different screen sizes
+
+In a production environment, these charts would be connected to the training process via WebSockets to display real-time metrics.
 
 ## Usage
 
