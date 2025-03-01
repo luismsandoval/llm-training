@@ -11,6 +11,7 @@ import {
   ChartOptions
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import { TrainingMetricsChartProps, TrainingMetrics } from '../types';
 
 // Register Chart.js components
 ChartJS.register(
@@ -23,12 +24,6 @@ ChartJS.register(
   Legend
 );
 
-// Define the props interface for the component
-interface TrainingMetricsChartProps {
-  title?: string;
-  height?: number;
-}
-
 /**
  * TrainingMetricsChart Component
  * 
@@ -40,7 +35,10 @@ interface TrainingMetricsChartProps {
  */
 const TrainingMetricsChart: React.FC<TrainingMetricsChartProps> = ({
   title = 'Training Metrics',
-  height = 300
+  height = 300,
+  metrics,
+  liveUpdate = true,
+  updateInterval = 2000
 }) => {
   // Mock data state (in a real app, this would come from WebSocket)
   const [trainingData, setTrainingData] = useState<{
@@ -73,8 +71,10 @@ const TrainingMetricsChart: React.FC<TrainingMetricsChartProps> = ({
     },
   };
 
-  // Generate mock data on component mount
+  // Generate mock data on component mount if no metrics provided and liveUpdate is true
   useEffect(() => {
+    if (!liveUpdate || metrics) return;
+    
     // Simulate data coming in over time
     const mockDataInterval = setInterval(() => {
       setTrainingData(prevData => {
@@ -97,11 +97,22 @@ const TrainingMetricsChart: React.FC<TrainingMetricsChartProps> = ({
           accuracy: [...prevData.accuracy, nextAccuracy]
         };
       });
-    }, 2000); // Update every 2 seconds
+    }, updateInterval); // Update every 2 seconds by default
 
     // Clean up interval on component unmount
     return () => clearInterval(mockDataInterval);
-  }, []);
+  }, [liveUpdate, metrics, updateInterval]);
+
+  // Use provided metrics if available
+  useEffect(() => {
+    if (metrics && metrics.length > 0) {
+      setTrainingData({
+        epochs: metrics.map(m => m.epoch),
+        loss: metrics.map(m => m.loss),
+        accuracy: metrics.map(m => m.accuracy || 0)
+      });
+    }
+  }, [metrics]);
 
   // Prepare chart data
   const data = {
