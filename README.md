@@ -128,6 +128,24 @@ Key visualization components:
 
 In a production environment, these charts would be connected to the training process via WebSockets to display real-time metrics.
 
+### 5. Real-time Communication
+
+For real-time communication between the Python training backend and the TypeScript dashboard, we use Socket.IO:
+
+```bash
+# Install WebSocket client packages
+cd dashboard
+npm install socket.io-client @types/socket.io-client
+```
+
+The WebSocket functionality:
+- Enables live streaming of training metrics to the dashboard
+- Allows controlling the training process from the dashboard
+- Supports real-time visualization of model training progress
+- Facilitates model inspection and hyperparameter tuning
+
+In the current implementation, data communication is simulated, but this will be replaced with actual WebSocket communication in later tasks.
+
 ## Usage
 
 ### Training a Model From Scratch

@@ -9,7 +9,7 @@ This is the frontend dashboard for monitoring and controlling the LLM training p
 - **[TypeScript](https://www.typescriptlang.org/)**: Type-safe JavaScript
 - **[Chart.js](https://www.chartjs.org/)**: Visualization library for training metrics
 - **[react-chartjs-2](https://react-chartjs-2.js.org/)**: React wrapper for Chart.js
-- **[WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)**: Real-time communication with the backend (to be installed)
+- **[Socket.IO Client](https://socket.io/docs/v4/client-api/)**: WebSocket client for real-time communication
 
 ## Development Setup
 
@@ -48,6 +48,27 @@ npm install chart.js react-chartjs-2
 
 In the current implementation, the chart uses mock data that updates every 2 seconds to simulate real-time training metrics. In a production environment, this would be replaced with actual training metrics received via WebSockets.
 
+## Real-time Communication
+
+For real-time communication with the Python backend, we use Socket.IO:
+
+```bash
+# Install WebSocket packages
+npm install socket.io-client @types/socket.io-client
+```
+
+WebSocket functionality will be implemented in future tasks (Task 16 & 17) to:
+
+1. **Receive live training metrics** from the Python backend
+2. **Send control commands** to start, pause, or stop training
+3. **Update hyperparameters** during training
+4. **Manage model checkpoints**
+
+The planned structure includes:
+- `services/WebSocketService.ts`: Service for WebSocket connection management
+- `hooks/useWebSocket.ts`: React hook for components to access WebSocket functionality
+- `hooks/useTrainingMetrics.ts`: Hook for subscribing to real-time metrics
+
 ### Future Visualization Components
 
 Planned visualizations include:
@@ -65,7 +86,7 @@ dashboard/
 │   ├── assets/         # Asset files (images, fonts, etc.)
 │   ├── components/     # Reusable UI components
 │   │   └── TrainingMetricsChart.tsx  # Chart component for training metrics
-│   ├── hooks/          # Custom React hooks
+│   ├── hooks/          # Custom React hooks (for WebSocket connection, etc.)
 │   ├── services/       # API and WebSocket services
 │   ├── types/          # TypeScript type definitions
 │   ├── App.tsx         # Main application component
@@ -83,6 +104,7 @@ dashboard/
 - Real-time training metrics visualization using Chart.js
 - Mock data generation for development and testing
 - Responsive design that works on various screen sizes
+- WebSocket packages installed for real-time communication (to be implemented in Task 16)
 
 ## Features (Planned)
 
