@@ -21,6 +21,18 @@ var/
 .installed.cfg
 *.egg
 
+# Virtual environments
+venv/
+ENV/
+llm-env/
+*conda*/
+miniconda*/
+conda-env/
+
+# Conda installation
+miniconda.sh
+Miniconda*.sh
+
 # Node.js
 node_modules/
 npm-debug.log
@@ -58,3 +70,17 @@ runs/
 # Cursor
 .cursor-guide.md
 .cursor-tasks.md
+
+# Invalid/temporary paths
+$HOME/
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Large data files
+*.csv
+*.json
+*.jsonl
+data/raw/
+data/processed/
