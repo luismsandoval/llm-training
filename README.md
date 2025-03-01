@@ -30,11 +30,16 @@ A complete implementation of a transformer-based Large Language Model (LLM) buil
 │   ├── src/
 │   │   ├── components/     # React visualization components
 │   │   ├── hooks/          # Custom React hooks
-│   │   └── services/       # WebSocket and state management
-│   └── public/             # Static assets
+│   │   ├── services/       # WebSocket and state management
+│   │   └── types/          # TypeScript type definitions
+│   ├── public/             # Static assets
+│   ├── README.md           # Dashboard-specific documentation
+│   └── package.json        # Frontend dependencies
 ├── scripts/                # Utility scripts for training and evaluation
 │   ├── gpu_config.sh       # GPU environment variable configuration
 │   └── test_gpu.py         # Script to test GPU setup and performance
+├── docs/                   # Documentation
+│   └── environment-setup.md # Environment setup guide
 └── requirements.txt        # Python dependencies
 ```
 
@@ -79,7 +84,9 @@ python scripts/test_gpu.py
 
 The output will show your GPU device, memory, CUDA version, and performance metrics.
 
-### 3. Dashboard Setup (Optional)
+### 3. Dashboard Setup
+
+The dashboard is built with React, TypeScript, and Vite for a modern developer experience and optimal performance.
 
 ```bash
 # Navigate to dashboard directory
@@ -88,9 +95,17 @@ cd dashboard
 # Install dependencies
 npm install
 
-# Start the dashboard
-npm run dev
+# Start the development server
+npm run dev -- --port 3000
+
+# For production build
+npm run build
 ```
+
+The dashboard provides:
+- Real-time visualization of training metrics
+- Interactive controls for the training process
+- Model inspection tools
 
 ## Usage
 
