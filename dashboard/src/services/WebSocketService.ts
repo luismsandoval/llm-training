@@ -3,19 +3,13 @@ import type { WebSocketConfig } from '../types';
 /**
  * WebSocket Service for communicating with the training server
  * 
- * This is a placeholder for the WebSocket service that will be implemented in Task 16.
- * The actual implementation will connect to the backend server for real-time metrics.
+ * Placeholder for communicating with Python backend.
  */
 export class WebSocketService {
-  private socket: any = null; // Will be properly typed in Task 16
+  private socket: any = null;
   private config: WebSocketConfig;
 
-  /**
-   * Create a new WebSocket service
-   * @param config WebSocket configuration
-   */
   constructor(config?: Partial<WebSocketConfig>) {
-    // Default configuration - will be used in Task 16
     this.config = {
       url: 'ws://localhost:8000',
       reconnectionAttempts: 5,
@@ -25,20 +19,19 @@ export class WebSocketService {
     };
   }
 
-  // Placeholder methods to be implemented in Task 16
   connect(): void {
-    console.log('WebSocketService: Placeholder for connect()');
+    console.log('WebSocketService: connect()');
   }
 
   disconnect(): void {
-    console.log('WebSocketService: Placeholder for disconnect()');
+    console.log('WebSocketService: disconnect()');
   }
 
   on(event: string, callback: (...args: any[]) => void): void {
-    console.log(`WebSocketService: Placeholder for on('${event}')`);
+    console.log(`WebSocketService: on('${event}')`);
   }
 
   off(event: string, callback: (...args: any[]) => void): void {
-    console.log(`WebSocketService: Placeholder for off('${event}')`);
+    console.log(`WebSocketService: off('${event}')`);
   }
-} 
+}

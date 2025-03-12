@@ -2,28 +2,27 @@ import React from 'react';
 import { TrainingControlsProps } from '../types';
 
 /**
- * TrainingControls Component (Placeholder)
+ * TrainingControls Component
  * 
- * This is a placeholder for the actual TrainingControls component
- * that will be implemented in Tasks 17-18.
+ * Basic controls for the training process
  */
 const TrainingControls: React.FC<TrainingControlsProps> = ({
   status,
   onStart,
   onPause,
-  onStop
+  onStop,
+  disabled
 }) => {
   return (
-    <div className="training-controls-placeholder">
+    <div className="training-controls">
       <h3>Training Controls</h3>
-      <p>Placeholder for training control buttons (will be implemented in Tasks 17-18)</p>
       <div>
-        <button onClick={onStart}>Start</button>
-        <button onClick={onPause}>Pause</button>
-        <button onClick={onStop}>Stop</button>
+        <button onClick={onStart} disabled={disabled || status === 'running'}>Start</button>
+        <button onClick={onPause} disabled={disabled || status !== 'running'}>Pause</button>
+        <button onClick={onStop} disabled={disabled || status === 'idle'}>Stop</button>
       </div>
     </div>
   );
 };
 
-export default TrainingControls; 
+export default TrainingControls;

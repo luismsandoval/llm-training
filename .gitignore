@@ -67,9 +67,6 @@ runs/
 *~
 .DS_Store 
 
-# Cursor
-.cursor-guide.md
-.cursor-tasks.md
 
 # Invalid/temporary paths
 $HOME/
